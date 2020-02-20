@@ -89,20 +89,17 @@ def main():
     lib_res = []
     books_res = []
 
-    checklist=set()
-    
-    #for lib in libs:
-    #    lib_res.append(lib[3])
-    #    books_res.append(lib[4])
+    checklist = set()
+
     for lib in libs:
         lib_res.append(lib[3])
-        cur_scan=[]
+        cur_scan = []
         for book in lib[4]:
             if book not in checklist:
                 cur_scan.append(book)
                 checklist.add(book)
         books_res.append(cur_scan)
-        
+
     wirte(books_res, lib_res, filename)
 
 
