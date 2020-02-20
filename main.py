@@ -81,7 +81,7 @@ def main():
     score=0
     for i in range(len(libs)):
         score+=calculate_score(cur_sign,libs[i],specs[0])
-
+    print score
 
 if __name__ == '__main__':
     main()
