@@ -85,11 +85,7 @@ def main():
 
     libs = sort_lib(libs)
     print("Libraies: {}".format(libs))
-    cur_sign = 0
-    score = 0
-    for i in range(len(libs)):
-        score += calculate_score(cur_sign, libs[i], specs[0])
-    print(score)
+
 
 
     lib_res = []
