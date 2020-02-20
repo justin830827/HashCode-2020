@@ -1,6 +1,6 @@
 import sys
 from algorithm import *
-from collections import  defaultdict
+from collections import defaultdict
 
 
 def sort_books(books, lib_books):
@@ -62,10 +62,10 @@ def read_file(filename):
 
 def wirte(sent_books, libs, filename):
     path = './Output/' + filename + '.txt'
-    with open(filename, 'w') as f:
+    with open(path, 'w') as f:
         f.write('{}\n'.format(len(libs)))
         for i in range(len(libs)):
-            f.write(str(libs[i]) + ' ' + str(len(sent_books[i])))
+            f.write(str(libs[i]) + ' ' + str(len(sent_books[i])) + '\n')
             for book in sent_books[i]:
                 f.write(str(book) + ' ')
             f.write('\n')
@@ -85,12 +85,6 @@ def main():
 
     libs = sort_lib(libs)
     print("Libraies: {}".format(libs))
-    cur_sign = 0
-    score = 0
-    for i in range(len(libs)):
-        score += calculate_score(cur_sign, libs[i], specs[0])
-    print(score)
-
 
     lib_res = []
     books_res = []
@@ -99,9 +93,8 @@ def main():
         lib_res.append(lib[3])
         books_res.append(lib[4])
 
-    print(lib_res, books_res)
+    wirte(books_res, lib_res, filename)
 
-    return lib_res, books_res
 
 if __name__ == '__main__':
     main()
