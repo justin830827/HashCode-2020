@@ -1,5 +1,6 @@
 import sys
 from algorithm import *
+from collections import  defaultdict
 
 def sort_books(books, lib_books):
     """
@@ -43,9 +44,11 @@ def read_file(filename):
 
         # Save libraies information with [signup, max_ship, books(set)]
         libs = []
+        idx = 0
         while n_lib > row/2:
             if row % 2 == 0:
-                cur_lib = list(map(int, f.readline().split()))
+                cur_lib = list(map(int, f.readline().split())) + [idx]
+                idx += 1
                 libs.append(cur_lib)
             else:
                 # append libray's books into its library_id
@@ -79,9 +82,20 @@ def main():
     print("Libraies: {}".format(libs))
     cur_sign=0
     score=0
-    for i in range(len(libs)):
-        score+=calculate_score(cur_sign,libs[i],specs[0])
+    #for i in range(len(libs)):
+    #   score+=calculate_score(cur_sign,libs[i],specs[0])
     print score
+
+    lib_res = []
+    books_res = []
+
+    for lib in libs:
+        lib_res.append(lib[3])
+        books_res.append(lib[4])
+
+    print(lib_res, books_res)
+
+    return lib_res, books_res
 
 if __name__ == '__main__':
     main()
