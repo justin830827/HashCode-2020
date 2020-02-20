@@ -98,7 +98,7 @@ def main():
             if book not in checklist:
                 cur_scan.append(book)
                 checklist.add(book)
-        if not cur_scan:
+        if  cur_scan:
             lib_res.append(lib[3])
             books_res.append(cur_scan)
 
