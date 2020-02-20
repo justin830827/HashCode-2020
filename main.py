@@ -1,5 +1,7 @@
 import sys
 from algorithm import *
+from collections import  defaultdict
+
 
 def sort_books(books, lib_books):
     """
@@ -10,7 +12,7 @@ def sort_books(books, lib_books):
         the sorted list of books
     """
     l = [(books[i], i) for i in lib_books]
-    l.sort(key = lambda x: x[0], reverse = True)
+    l.sort(key=lambda x: x[0], reverse=True)
     return [i[1] for i in l]
 
 
@@ -43,24 +45,30 @@ def read_file(filename):
 
         # Save libraies information with [signup, max_ship, books(set)]
         libs = []
+        idx = 0
         while n_lib > row/2:
             if row % 2 == 0:
-                cur_lib = list(map(int, f.readline().split()))
+                cur_lib = list(map(int, f.readline().split())) + [idx]
+                idx += 1
                 libs.append(cur_lib)
             else:
                 # append libray's books into its library_id
-                libs[-1].append(sort_books(books, list(map(int, f.readline().split()))))
+                libs[-1].append(sort_books(books,
+                                           list(map(int, f.readline().split()))))
             row += 1
 
     return (n_book, n_lib, deadline), books, libs
 
 
-def wirte(results, filename):
+def wirte(sent_books, libs, filename):
     path = './Output/' + filename + '.txt'
     with open(filename, 'w') as f:
-        f.write('{}\n'.format(len(results)))
-        for res in results:
-            f.write(str(res) + ' ')
+        f.write('{}\n'.format(len(libs)))
+        for i in range(len(libs)):
+            f.write(str(libs[i]) + ' ' + str(len(sent_books[i])))
+            for book in sent_books[i]:
+                f.write(str(book) + ' ')
+            f.write('\n')
 
 
 def main():
@@ -75,10 +83,25 @@ def main():
     print("Books: {}".format(books))
     print("Libraies: {}".format(libs))
 
-    libs=sort_lib(libs)
+    libs = sort_lib(libs)
     print("Libraies: {}".format(libs))
-    
-    
+    cur_sign = 0
+    score = 0
+    for i in range(len(libs)):
+        score += calculate_score(cur_sign, libs[i], specs[0])
+    print(score)
+
+
+    lib_res = []
+    books_res = []
+
+    for lib in libs:
+        lib_res.append(lib[3])
+        books_res.append(lib[4])
+
+    print(lib_res, books_res)
+
+    return lib_res, books_res
 
 if __name__ == '__main__':
     main()
