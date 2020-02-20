@@ -1,5 +1,17 @@
 import sys
 
+def sort_books(books, lib_books):
+    """
+    Input: 
+        books: book score list
+        lib_books: list of books in the library
+    Output:
+        the sorted list of books
+    """
+    l = [(books[i], i) for i in lib_books]
+    l.sort(key = lambda x: x[1], reverse = True)
+    return [i[1] for i in l]
+
 
 def read_file(filename):
     """
@@ -36,7 +48,7 @@ def read_file(filename):
                 libs.append(cur_lib)
             else:
                 # append libray's books into its library_id
-                libs[-1].append(set(map(int, f.readline().split())))
+                libs[-1].append(sort_books(books, list(map(int, f.readline().split()))))
             row += 1
 
     return (n_book, n_lib, deadline), books, libs
