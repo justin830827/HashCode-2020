@@ -9,7 +9,7 @@ def sort_books(books, lib_books):
         the sorted list of books
     """
     l = [(books[i], i) for i in lib_books]
-    l.sort(key = lambda x: x[1], reverse = True)
+    l.sort(key = lambda x: x[0], reverse = True)
     return [i[1] for i in l]
 
 
