@@ -84,15 +84,25 @@ def main():
     print("Libraies: {}".format(libs))
 
     libs = sort_lib(libs)
-    print("Libraies: {}".format(libs))
+    #print("Libraies: {}".format(libs))
 
     lib_res = []
     books_res = []
 
+    checklist=set()
+    
+    #for lib in libs:
+    #    lib_res.append(lib[3])
+    #    books_res.append(lib[4])
     for lib in libs:
         lib_res.append(lib[3])
-        books_res.append(lib[4])
-
+        cur_scan=[]
+        for book in lib[4]:
+            if book not in checklist:
+                cur_scan.append(book)
+                checklist.add(book)
+        books_res.append(cur_scan)
+        
     wirte(books_res, lib_res, filename)
 
 
