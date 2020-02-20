@@ -2,6 +2,22 @@ import sys
 
 
 def read_file(filename):
+    """
+    Args:
+        filename: the filename without extension in ./Data
+
+    Return:
+        specs: a tuple with tuple[0] = number of books, tuple[1] = number of library,
+               tuple[2] = the deadline of scanning books.
+        books: a list with scroe of books. Index of list indicates the book id,
+               the value of list indicates the score value.
+        libs:  a list of libraries.
+               library[i][0] = number of books in lib.
+               library[i][1] = signup process days.
+               library[i][2] = maximum ship per day.
+               library[i][3] = a set contains all the books with id in the lib.
+
+    """
     path = './Data/' + filename + '.txt'
     with open(path, 'r') as f:
         specs = f.readline().split()
