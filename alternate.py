@@ -2,7 +2,7 @@ from main import *
 from algorithm import *
 
 def sort_by_score(libs, cur_sign, total_day, books):
-    l = [lib + [calculate_score(cur_sign, lib, total_day, books)] for lib in libs]
+    l = [lib + [calculate_score(cur_sign, lib, total_day, books, [])] for lib in libs]
     l.sort(key = lambda x: x[-1], reverse = True)
     return [lib[:-1] for lib in l]
     

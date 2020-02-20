@@ -4,17 +4,12 @@ def sort_lib(lib):
 
 def calculate_score(cur_sign, lib, total_day, books, checklist):
     res = 0
-<<<<<<< HEAD
-    for i in lib[4][:(total_day-(cur_sign+lib[1])+1)*lib[2]]:
-        res += books[i]
-=======
-    limit = (total_day-cur_sign)*lib[2]
+    limit = (total_day-cur_sign-lib[1]+1)*lib[2]
     count = 0
-    for i in len(lib[3]):
+    for i in range(len(lib[4])):
         if count > limit:
             break
-        if lib[3][i] not in checklist:
-            res += books[lib[3][i]]
+        if lib[4][i] not in checklist:
+            res += books[lib[4][i]]
             count += 1
->>>>>>> 75d19e4787227c3ae602179a30b96896e5aba4e2
     return res
