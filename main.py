@@ -1,4 +1,5 @@
 import sys
+from algorithm import *
 
 def sort_books(books, lib_books):
     """
@@ -73,6 +74,13 @@ def main():
     print("Specs: {}".format(specs))
     print("Books: {}".format(books))
     print("Libraies: {}".format(libs))
+
+    libs=sort_lib(libs)
+    print("Libraies: {}".format(libs))
+    cur_sign=0
+    score=0
+    for i in range(len(libs)):
+        score+=calculate_score(cur_sign,libs[i],specs[0])
 
 
 if __name__ == '__main__':
