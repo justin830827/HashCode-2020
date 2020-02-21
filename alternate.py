@@ -18,6 +18,9 @@ def alter():
     print("Books: {}".format(books))
     print("Libraies: {}".format(libs))
 
+    libs = sort_lib(libs)
+    libs = libs[:100]
+
     lib_res = []
     books_res = []
     cur_sign = 0
